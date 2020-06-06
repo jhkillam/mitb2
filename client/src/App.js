@@ -3,14 +3,18 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios'
 
+const axiosInstance = axios.create({
+  baseURL: "https://jsonplaceholder.typicode.com"
+})
+
 class App extends Component {
   state = {
     hello: null
   }
 
   componentDidMount() {
-    axios.get('/hello')
-      .then(res => this.setState({hello: res.data}))
+    axiosInstance.get('/posts')
+      .then(res => console.log(res.data))
       .catch(err => console.log(err))
   }
   render() {
